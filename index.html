@@ -11,6 +11,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
+  <!-- AUDIO ASSETS -->
+  <audio id="missionAudio" src="46087_20210507_HelicopterFliesOnMars.mp3" preload="auto"></audio>
+  <audio id="moonAudio" src="Apollo_11_Landing_Net_1_HSK.mp3" preload="auto"></audio>
+
   <!-- TOP NASA MISSION CONTROL BAR -->
   <header class="topbar">
     <div class="container topbar-inner">
@@ -354,5 +358,24 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const audioBtn = document.getElementById('spotlightAudioBtn');
+      const audio = document.getElementById('missionAudio');
+
+      if (audioBtn && audio) {
+        audioBtn.addEventListener('click', () => {
+          if (audio.paused) {
+            audio.play();
+            audioBtn.textContent = 'Pause Audio';
+          } else {
+            audio.pause();
+            audioBtn.textContent = 'Play Rotor & Martian Wind Audio';
+          }
+        });
+      }
+    });
+  </script>
 </body>
-</html>
+  </html>
+  
