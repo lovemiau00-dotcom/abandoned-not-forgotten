@@ -1,21 +1,15 @@
-# Abandoned, Not Forgotten — Живое научное наследие Луны и Марса
+# LOST IN SPACE // NASA ARCHIVE — Abandoned, Not Forgotten
 
-Интерактивная образовательная платформа для челленджа **Abandoned, Not Forgotten** (NASA Space Apps Challenge).
+Interactive educational web archive for the **NASA Space Apps Challenge (Abandoned, Not Forgotten)**.
 
-## Проблема и идея проекта
-После завершения связи космические аппараты часто воспринимаются как отработанная техника. Цель этого проекта — показать, что оставленные на Луне и Марсе модули, роверы и приборы продолжают приносить научную пользу:
-1. **Пассивные научные инструменты** (например, лазерные уголковые отражатели миссий Apollo) работают без питания десятилетиями.
-2. **Геодезические и картографические маяки** (Viking 1, LRV-3) задают точную сетку координат для орбитальных миссий.
-3. **Инженерные полигоны** (Surveyor 3, InSight) позволяют оценивать воздействие радиации, вакуума и пыли на материалы для будущих миссий Artemis и освоения Марса.
+## Core Idea & Scientific Value
+Left-behind hardware on Earth, the Moon, and Mars is more than inactive equipment:
+- **Passively active landmarks:** Apollo LRRR corner-cube reflectors still return laser pulses from Earth to measure lunar distance to millimeter accuracy.
+- **Geodetic & environmental benchmarks:** Viking 1, Opportunity, and InSight anchor coordinate frames and reveal dust fallout and surface evolution.
+- **Engineering lessons:** Surveyor 3 and Ingenuity demonstrate material aging, atmospheric entry, and dust accumulation for future missions.
 
-## Функциональность
-- Переключение между интерактивными картами **Луны** и **Марса** с координатными маркерами посадки.
-- Фильтрация объектов по их **современной научной роли**.
-- Карточки аппаратов с фотографиями NASA, координатами, историей завершения миссии и вкладом в науку будущего.
-- Интерактивный модуль самопроверки «Научный детектив».
-
-## Запуск и публикация на GitHub Pages
-Проект написан на чистом `HTML5`, `CSS3` и `Vanilla JavaScript` без сторонних зависимостей:
-1. Загрузите файлы `index.html`, `style.css`, `app.js` и `README.md` в репозиторий GitHub.
-2. Откройте **Settings → Pages**.
-3. В разделе **Source** выберите ветку `main` и папку `/ (root)`, затем нажмите **Save**.
+## Features
+- Real-time rotating 3D planets (**Earth, Moon, Mars**) with surface markers for left-behind artifacts.
+- Detailed artifact cards with photos, status, reason left behind, coordinates, top-down surface views, and Web Audio API mission soundscapes.
+- **Time Capsule Timeline (1958–2026)** tracing hardware evolution from calibration crosses to rovers and Ingenuity.
+- **Scale Lab** comparing a 175 cm human and 4.5 m car with F-1, LRV, Opportunity, Fallen Astronaut, and the 60 m Mojave calibration target.
