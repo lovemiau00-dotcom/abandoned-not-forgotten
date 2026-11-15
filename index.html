@@ -11,7 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-  <!-- AUDIO ASSETS (Звук марсианского ротора привязан к основной кнопке) -->
+  <!-- AUDIO ASSETS -->
   <audio id="missionAudio" src="46087_20210507_HelicopterFliesOnMars.mp3" preload="auto"></audio>
   <audio id="moonAudio" src="Apollo_11_Landing_Net_1_HSK.mp3" preload="auto"></audio>
 
@@ -210,9 +210,13 @@
     </div>
   </section>
 
-  <!-- BLOCK 4: ARTIFACT SPOTLIGHT -->
+  <!-- BLOCK 4: ARTIFACT SPOTLIGHT (INGENUITY MARS) -->
   <section id="spotlight" class="section section-alt">
     <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">FEATURED ARTIFACT // MARS</span>
+        <h2>Mars Pioneer Graveyard</h2>
+      </div>
       <div class="spotlight-grid">
         <div class="spotlight-media">
           <div class="orbital-badge">ORBITAL / TOP-DOWN VIEW // JEZERO CRATER</div>
@@ -254,6 +258,58 @@
           <div class="spotlight-actions">
             <button id="spotlightAudioBtn" class="btn btn-primary">Play Rotor &amp; Martian Wind Audio</button>
             <button id="spotlightSelectBtn" class="btn btn-secondary">Inspect in 3D Map</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 4.1: ADDITIONAL ARTIFACT SPOTLIGHT (APOLLO 11 LRRR) -->
+  <section id="spotlight-moon" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">FEATURED ARTIFACT // MOON</span>
+        <h2>Apollo 11 Laser Ranging Retroreflector (LRRR)</h2>
+      </div>
+      <div class="spotlight-grid">
+        <div class="spotlight-media">
+          <div class="orbital-badge">LUNAR SURFACE // TRANQUILITY BASE</div>
+          <img
+            src="IMG_6210.jpeg"
+            alt="Apollo 11 Laser Ranging Retroreflector"
+            class="spotlight-img"
+          />
+        </div>
+
+        <div class="spotlight-info">
+          <span class="badge-accent">PASSIVELY ACTIVE ARTIFACT</span>
+          <h2>Apollo 11 Laser Ranging Retroreflector (LRRR)</h2>
+
+          <div class="meta-grid-2x2">
+            <div class="meta-cell">
+              <span class="meta-k">Coordinates</span>
+              <span class="meta-v">0°40′26″ N, 23°28′22″ E</span>
+            </div>
+            <div class="meta-cell">
+              <span class="meta-k">Date Left Behind</span>
+              <span class="meta-v">July 21, 1969</span>
+            </div>
+            <div class="meta-cell">
+              <span class="meta-k">Status</span>
+              <span class="meta-v">Active (reflecting laser beams from Earth)</span>
+            </div>
+            <div class="meta-cell">
+              <span class="meta-k">Mass</span>
+              <span class="meta-v">~2.5 kg</span>
+            </div>
+          </div>
+
+          <p class="spotlight-story">
+            The Apollo 11 Laser Ranging Retroreflector is a device consisting of an array of quartz corner-cube prisms. Placed on the lunar surface by Neil Armstrong and Buzz Aldrin, it is still used today to bounce laser beams sent from Earth observatories, allowing scientists to measure the exact distance between the Earth and the Moon with millimeter precision.
+          </p>
+
+          <div class="spotlight-actions">
+            <button id="moonAudioBtn" class="btn btn-primary">Play Apollo 11 Mission Audio</button>
           </div>
         </div>
       </div>
@@ -360,8 +416,9 @@
   <script src="app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Кнопка для Марса (звук вертолета)
       const audioBtn = document.getElementById('spotlightAudioBtn');
-      const audio = document.getElementById('missionAudio'); // Теперь здесь файл 46087 (ротор и ветер)
+      const audio = document.getElementById('missionAudio');
 
       if (audioBtn && audio) {
         audioBtn.addEventListener('click', () => {
@@ -374,7 +431,24 @@
           }
         });
       }
+
+      // Кнопка для Луны (звук Apollo 11)
+      const moonAudioBtn = document.getElementById('moonAudioBtn');
+      const moonAudio = document.getElementById('moonAudio');
+
+      if (moonAudioBtn && moonAudio) {
+        moonAudioBtn.addEventListener('click', () => {
+          if (moonAudio.paused) {
+            moonAudio.play();
+            moonAudioBtn.textContent = 'Pause Audio';
+          } else {
+            moonAudio.pause();
+            moonAudioBtn.textContent = 'Play Apollo 11 Mission Audio';
+          }
+        });
+      }
     });
   </script>
 </body>
-</html>
+            </html>
+            
