@@ -1,112 +1,353 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abandoned, Not Forgotten — Живое наследие Луны и Марса</title>
+  <title>LOST IN SPACE // NASA ARCHIVE — Abandoned, Not Forgotten</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-  <header class="hero">
-    <div class="container">
-      <span class="badge">NASA Space Apps Challenge • Abandoned, Not Forgotten</span>
-      <h1>Оставленные, но не забытые</h1>
-      <p class="subtitle">
-        Интерактивная исследовательская платформа о том, почему аппараты на Луне и Марсе —
-        это не «космический мусор», а действующие научные ориентиры, архивы данных и фундамент будущих колоний.
-      </p>
-
-      <div class="problem-solution-grid">
-        <div class="ps-card">
-          <h3>Проблема</h3>
-          <p>После потери связи миссии воспринимаются как «закрытые главы», а оставленная техника — как отработанный металл.</p>
-        </div>
-        <div class="ps-card accent">
-          <h3>Научная идея проекта</h3>
-          <p>Показать <strong>пост-миссионную ценность</strong>: как пассивные отражатели, сейсмографы и марсоходы продолжают работать на науку спустя десятилетия.</p>
-        </div>
-      </div>
+  <!-- TOP NASA MISSION CONTROL BAR -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#hero" class="logo">
+        <span class="logo-dot"></span>
+        <span>LOST IN SPACE // NASA ARCHIVE</span>
+      </a>
+      <nav class="quick-nav" aria-label="Quick Location Switcher">
+        <button class="nav-pill" data-jump="earth">Earth</button>
+        <button class="nav-pill" data-jump="moon">Moon</button>
+        <button class="nav-pill" data-jump="mars">Mars</button>
+        <button class="nav-pill" data-jump="map">3D Map</button>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <!-- Панель управления -->
-    <section class="controls-bar" aria-label="Фильтры и переключатель планет">
-      <div class="planet-switch" role="tablist">
-        <button class="planet-btn active" data-planet="moon" role="tab" aria-selected="true">Луна (Moon)</button>
-        <button class="planet-btn" data-planet="mars" role="tab" aria-selected="false">Марс (Mars)</button>
-      </div>
-
-      <div class="filter-group">
-        <label for="legacyFilter">Научная роль сегодня:</label>
-        <select id="legacyFilter">
-          <option value="all">Все категории наследия</option>
-          <option value="active-science">Действующий научный инструмент</option>
-          <option value="calibration">Опорная точка и картография</option>
-          <option value="engineering">Инженерный урок для будущего</option>
-        </select>
-      </div>
-    </section>
-
-    <!-- Интерактивная карта + Карточка исследования -->
-    <section class="explorer-grid">
-      <div class="map-wrapper">
-        <div class="map-header">
-          <h2 id="mapTitle">Карта мест посадки: Луна</h2>
-          <span class="map-hint">Нажмите на маркер, чтобы изучить научное наследие объекта</span>
-        </div>
-
-        <div id="surfaceMap" class="surface-map moon-bg" role="region" aria-label="Интерактивная карта поверхности">
-          <!-- Маркеры рендерятся через app.js -->
-        </div>
-
-        <div class="map-legend">
-          <span><i class="dot active-science"></i> Действует сейчас</span>
-          <span><i class="dot calibration"></i> Эталон / Ориентир</span>
-          <span><i class="dot engineering"></i> Инженерный вклад</span>
+  <!-- BLOCK 1: HERO SECTION (100vh) -->
+  <section id="hero" class="hero">
+    <canvas id="heroStarfield" class="hero-starfield" aria-hidden="true"></canvas>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="mission-tag">NASA SPACE APPS // ABANDONED, NOT FORGOTTEN</div>
+        <h1>What We Left Beyond the Horizon</h1>
+        <p class="hero-subtitle">
+          An interactive archive of forgotten, lost, and intentionally left-behind NASA spacecraft and hardware across Earth, the Moon, and Mars — from concrete calibration crosses in the Mojave Desert to dust-buried rovers.
+        </p>
+        <div class="hero-actions">
+          <a href="#worlds" class="btn btn-primary">[ Explore Archive ]</a>
+          <a href="#map" class="btn btn-secondary">Launch 3D Surface Map</a>
         </div>
       </div>
 
-      <aside class="detail-panel" id="detailPanel" aria-live="polite">
-        <!-- Детали выбранного аппарата рендерятся через app.js -->
-      </aside>
-    </section>
-
-    <!-- Сравнительный блок: Зачем сохранять и изучать эти объекты -->
-    <section class="science-impact">
-      <h2>Три причины, почему эти аппараты всё ещё нужны науке</h2>
-      <div class="impact-cards">
-        <article class="impact-card">
-          <span class="impact-num">01</span>
-          <h3>Физические эталоны на поверхности</h3>
-          <p>Уголковые отражатели миссий Apollo и Луноходов позволяют лазерным дальномерам с Земли измерять расстояние до Луны с точностью до миллиметров.</p>
-        </article>
-        <article class="impact-card">
-          <span class="impact-num">02</span>
-          <h3>Координатная привязка планет</h3>
-          <p>Посадочные модули Viking и InSight выступают реперными точками для орбитальных камер: по ним уточняют карты высот и вращение Марса.</p>
-        </article>
-        <article class="impact-card">
-          <span class="impact-num">03</span>
-          <h3>Проверка материалов временем</h3>
-          <p>Изучение деградации металлов, солнечных панелей и электроники в условиях радиации и пыли помогает проектировать базы программы Artemis.</p>
-        </article>
+      <div class="hero-visual">
+        <div id="heroPlanetsCanvas" class="hero-planets-box" aria-label="Rotating 3D Earth, Moon, and Mars"></div>
+        <div class="hero-caption">
+          <span>REAL-TIME 3D ORBITAL PREVIEW</span>
+          <span>EARTH · MOON · MARS</span>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Мини-квиз для закрепления научной составляющей -->
-    <section class="quiz-box">
-      <div class="quiz-header">
-        <h2>Интерактивная проверка: Научный детектив</h2>
-        <p>Проверьте, как оставленное оборудование помогает современным миссиям.</p>
+  <!-- BLOCK 2: STATS BAR -->
+  <section class="stats-bar" aria-label="Archive Telemetry Metrics">
+    <div class="container stats-grid">
+      <div class="stat-item">
+        <span class="stat-num">3 Worlds</span>
+        <span class="stat-label">Geography of left-behind artifacts</span>
       </div>
-      <div id="quizContainer"></div>
-    </section>
-  </main>
+      <div class="stat-item">
+        <span class="stat-num">180+ Tons</span>
+        <span class="stat-label">Mass of Earth hardware on the Moon</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1958–2026</span>
+        <span class="stat-label">Chronology of space expeditions</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">4 Objects</span>
+        <span class="stat-label">Still transmitting signal or reflecting lasers</span>
+      </div>
+    </div>
+  </section>
 
-  <footer class="footer">
+  <!-- BLOCK 3: THREE-WORLD PORTAL -->
+  <section id="worlds" class="section">
     <div class="container">
-      <p>Проект подготовлен для челленджа <strong>Abandoned, Not Forgotten</strong> • Данные основаны на открытых архивах NASA (NSSDC / PDS).</p>
+      <div class="section-head">
+        <span class="eyebrow">TELEMETRY SECTOR SELECTION</span>
+        <h2>Choose a Point on the Solar System Map</h2>
+      </div>
+
+      <div class="worlds-grid">
+        <article class="world-card world-earth" data-world="earth">
+          <div class="world-surface-preview earth-texture"></div>
+          <div class="world-card-body">
+            <span class="world-code">SECTOR 01 // TERRESTRIAL</span>
+            <h3>EARTH // Ocean Floor &amp; Deserts</h3>
+            <p>
+              Skylab debris in Australia, sunken Saturn V F-1 stages in the Atlantic, sand-swept calibration crosses, and weather balloons lost in polar ice.
+            </p>
+            <button class="btn btn-outline open-world-btn" data-world="earth">Open Earth Archive →</button>
+          </div>
+        </article>
+
+        <article class="world-card world-moon" data-world="moon">
+          <div class="world-surface-preview moon-texture"></div>
+          <div class="world-card-body">
+            <span class="world-code">SECTOR 02 // LUNAR</span>
+            <h3>MOON // Traces of the Apollo Era</h3>
+            <p>
+              Descent stages, lunar rovers, laser retroreflectors, two golf balls, and a family portrait in a plastic bag bleached by solar radiation.
+            </p>
+            <button class="btn btn-outline open-world-btn" data-world="moon">Open Lunar Archive →</button>
+          </div>
+        </article>
+
+        <article class="world-card world-mars" data-world="mars">
+          <div class="world-surface-preview mars-texture"></div>
+          <div class="world-card-body">
+            <span class="world-code">SECTOR 03 // MARTIAN</span>
+            <h3>MARS // Pioneer Graveyard</h3>
+            <p>
+              Sleeping rovers Spirit and Opportunity, the Ingenuity helicopter with a damaged rotor blade, and parachutes and heat shields scattered by wind.
+            </p>
+            <button class="btn btn-outline open-world-btn" data-world="mars">Open Martian Archive →</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE 3D PLANET MAP + ARTIFACT INSPECTOR -->
+  <section id="map" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">3D SURFACE TELEMETRY &amp; ARTIFACT DATABASE</span>
+        <h2>Interactive 3D Planet Map &amp; Left-Behind Artifacts</h2>
+        <p class="section-sub">
+          Drag to rotate Earth, Moon, or Mars in real time. Click any surface beacon or card to inspect photos, status, reason left behind, coordinates, top-down orbital view, and mission audio.
+        </p>
+      </div>
+
+      <div class="map-controls">
+        <div class="planet-tabs" role="tablist">
+          <button class="planet-tab" data-planet="earth">Earth</button>
+          <button class="planet-tab active" data-planet="moon">Moon</button>
+          <button class="planet-tab" data-planet="mars">Mars</button>
+        </div>
+
+        <div class="filter-controls">
+          <label for="statusFilter">Status:</label>
+          <select id="statusFilter">
+            <option value="all">All Statuses</option>
+            <option value="passive-active">Passively Active</option>
+            <option value="sand-covered">Buried / Sand-Covered</option>
+            <option value="ocean-floor">On Ocean Floor</option>
+            <option value="atmospheric-entry">Destroyed on Atmospheric Entry</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="explorer-layout">
+        <div class="globe-panel">
+          <div class="panel-topbar">
+            <span id="activeGlobeTitle">3D GLOBE // MOON</span>
+            <span class="hint-text">Drag to rotate · Click marker to inspect</span>
+          </div>
+          <div id="interactiveGlobeBox" class="interactive-globe-box"></div>
+          <div id="markerQuickList" class="marker-quick-list"></div>
+        </div>
+
+        <aside id="artifactDetailPanel" class="detail-panel" aria-live="polite">
+          <!-- Populated dynamically by app.js -->
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIME CAPSULE TIMELINE (1958–2026) -->
+  <section id="timeline" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">CHRONOLOGICAL EVOLUTION</span>
+        <h2>Time Capsule Timeline (1958–2026)</h2>
+        <p class="section-sub">
+          Slide from NASA’s founding in 1958 to 2026 to trace how left-behind artifacts evolved from simple aluminum reflectors and seismometers to rovers and the Ingenuity helicopter.
+        </p>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline-slider-row">
+          <label for="timelineSlider" class="mono-label">YEAR: <strong id="timelineYearValue">1969</strong></label>
+          <input type="range" id="timelineSlider" min="1958" max="2026" value="1969" step="1" />
+        </div>
+        <div class="timeline-presets" id="timelinePresets">
+          <button class="preset-btn" data-year="1958">1958</button>
+          <button class="preset-btn" data-year="1969">1969</button>
+          <button class="preset-btn" data-year="1976">1976</button>
+          <button class="preset-btn" data-year="1979">1979</button>
+          <button class="preset-btn" data-year="2004">2004</button>
+          <button class="preset-btn" data-year="2018">2018</button>
+          <button class="preset-btn" data-year="2024">2024</button>
+        </div>
+        <div id="timelineOutput" class="timeline-output"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 4: ARTIFACT SPOTLIGHT -->
+  <section id="spotlight" class="section section-alt">
+    <div class="container">
+      <div class="spotlight-grid">
+        <div class="spotlight-media">
+          <div class="orbital-badge">ORBITAL / TOP-DOWN VIEW // JEZERO CRATER</div>
+          <img
+            src="https://images-assets.nasa.gov/image/PIA24455/PIA24455~medium.jpg"
+            alt="NASA Ingenuity Mars Helicopter"
+            class="spotlight-img"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div class="fallback-visual" style="display:none;">
+            <span>NASA ARCHIVE // INGENUITY MARS HELICOPTER</span>
+          </div>
+          <canvas id="spotlightTopDownCanvas" class="topdown-canvas" width="520" height="170"></canvas>
+        </div>
+
+        <div class="spotlight-info">
+          <span class="badge-accent">ARTIFACT IN FOCUS</span>
+          <h2>Ingenuity Helicopter (Mars, Jezero Crater)</h2>
+
+          <div class="meta-grid-2x2">
+            <div class="meta-cell">
+              <span class="meta-k">Coordinates</span>
+              <span class="meta-v">18°26′41″ N, 77°27′03″ E</span>
+            </div>
+            <div class="meta-cell">
+              <span class="meta-k">Date Left Behind</span>
+              <span class="meta-v">January 18, 2024</span>
+            </div>
+            <div class="meta-cell">
+              <span class="meta-k">Status</span>
+              <span class="meta-v">Permanently on surface (damaged rotor blade)</span>
+            </div>
+            <div class="meta-cell">
+              <span class="meta-k">Mass</span>
+              <span class="meta-v">1.8 kg</span>
+            </div>
+          </div>
+
+          <p class="spotlight-story">
+            Designed for just 5 test flights, the first Martian drone completed 72 flights and flew more than 17 kilometers. During a hard landing in January 2024, it damaged the tip of a rotor blade. Ingenuity now remains permanently in the sand dunes of Jezero Crater, continuing to operate as a stationary weather station.
+          </p>
+
+          <div class="spotlight-actions">
+            <button id="spotlightAudioBtn" class="btn btn-primary">Play Rotor &amp; Martian Wind Audio</button>
+            <button id="spotlightSelectBtn" class="btn btn-secondary">Inspect in 3D Map</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 5: SCALE LAB -->
+  <section id="scale-lab" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">DIMENSIONAL TELEMETRY</span>
+        <h2>How Big Are They Really?</h2>
+        <p class="section-sub">
+          Space photographs can be deceptive. Compare the real dimensions of left-behind hardware with familiar Earth references.
+        </p>
+      </div>
+
+      <div class="scale-lab-box">
+        <div class="scale-controls">
+          <span class="mono-label">COMPARE WITH ARTIFACT:</span>
+          <button class="scale-btn active" data-scale="f1">F-1 Engine (Atlantic Ocean) — 5.6 m</button>
+          <button class="scale-btn" data-scale="lrv">Lunar Rover LRV (Moon) — 3.1 m</button>
+          <button class="scale-btn" data-scale="opp">Opportunity Rover (Mars) — 1.6 m</button>
+          <button class="scale-btn" data-scale="fallen">Fallen Astronaut Figurine (Moon) — 8.5 cm</button>
+          <button class="scale-btn" id="mojaveScaleToggle" data-scale="mojave">Mojave Calibration Target (60 m)</button>
+        </div>
+
+        <canvas id="scaleCanvas" class="scale-canvas" width="1040" height="320"></canvas>
+        <p id="scaleFootnote" class="scale-footnote">
+          The calibration target in the Mojave Desert spans 60 meters — it will not fit on this screen without scaling down by 10x.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 6: CURATED STORIES -->
+  <section id="curated" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">CURATED ARCHIVE NOTES</span>
+        <h2>Not Just Metal: Personal &amp; Strange Artifacts</h2>
+      </div>
+
+      <div class="curated-grid">
+        <article class="curated-card">
+          <span class="loc-tag">[ MOON ]</span>
+          <h3>96 Waste Bags from Apollo Missions</h3>
+          <p>
+            Left behind to save ascent mass from the Moon. Today astrobiologists hope to return for them to see whether Earth microbes survived half a century in vacuum.
+          </p>
+        </article>
+
+        <article class="curated-card">
+          <span class="loc-tag">[ EARTH ]</span>
+          <h3>$400 Fine for Space Litter</h3>
+          <p>
+            In 1979, debris from the Skylab station fell onto Australia’s Shire of Esperance. Local authorities issued NASA an official littering fine.
+          </p>
+        </article>
+
+        <article class="curated-card">
+          <span class="loc-tag">[ MARS ]</span>
+          <h3>Encrypted Message on a Parachute</h3>
+          <p>
+            The white-and-orange pattern on the Perseverance rover’s parachute is binary code hiding the Jet Propulsion Laboratory motto: “Dare Mighty Things.”
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCK 7: FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo footer-logo">
+          <span class="logo-dot"></span>
+          <span>LOST IN SPACE // NASA ARCHIVE</span>
+        </div>
+        <p class="footer-text">
+          Educational project about the history of space exploration and human traces left beyond Earth.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#worlds">Earth · Moon · Mars</a></li>
+          <li><a href="#map">Interactive 3D Map</a></li>
+          <li><a href="#timeline">Timeline 1958–2026</a></li>
+          <li><a href="#scale-lab">Scale Lab</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Data Sources</h4>
+        <p class="footer-text">
+          All photographs, coordinates, and telemetry reference open NASA archives (LRO, MRO HiRISE, Apollo Lunar Surface Journal, NASA Image and Video Library).
+        </p>
+      </div>
     </div>
   </footer>
 
