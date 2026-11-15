@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abandoned, Not Forgotten — Живое наследие Луны и Марса</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <span class="badge">NASA Space Apps Challenge • Abandoned, Not Forgotten</span>
+      <h1>Оставленные, но не забытые</h1>
+      <p class="subtitle">
+        Интерактивная исследовательская платформа о том, почему аппараты на Луне и Марсе —
+        это не «космический мусор», а действующие научные ориентиры, архивы данных и фундамент будущих колоний.
+      </p>
+
+      <div class="problem-solution-grid">
+        <div class="ps-card">
+          <h3>Проблема</h3>
+          <p>После потери связи миссии воспринимаются как «закрытые главы», а оставленная техника — как отработанный металл.</p>
+        </div>
+        <div class="ps-card accent">
+          <h3>Научная идея проекта</h3>
+          <p>Показать <strong>пост-миссионную ценность</strong>: как пассивные отражатели, сейсмографы и марсоходы продолжают работать на науку спустя десятилетия.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Панель управления -->
+    <section class="controls-bar" aria-label="Фильтры и переключатель планет">
+      <div class="planet-switch" role="tablist">
+        <button class="planet-btn active" data-planet="moon" role="tab" aria-selected="true">Луна (Moon)</button>
+        <button class="planet-btn" data-planet="mars" role="tab" aria-selected="false">Марс (Mars)</button>
+      </div>
+
+      <div class="filter-group">
+        <label for="legacyFilter">Научная роль сегодня:</label>
+        <select id="legacyFilter">
+          <option value="all">Все категории наследия</option>
+          <option value="active-science">Действующий научный инструмент</option>
+          <option value="calibration">Опорная точка и картография</option>
+          <option value="engineering">Инженерный урок для будущего</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Интерактивная карта + Карточка исследования -->
+    <section class="explorer-grid">
+      <div class="map-wrapper">
+        <div class="map-header">
+          <h2 id="mapTitle">Карта мест посадки: Луна</h2>
+          <span class="map-hint">Нажмите на маркер, чтобы изучить научное наследие объекта</span>
+        </div>
+
+        <div id="surfaceMap" class="surface-map moon-bg" role="region" aria-label="Интерактивная карта поверхности">
+          <!-- Маркеры рендерятся через app.js -->
+        </div>
+
+        <div class="map-legend">
+          <span><i class="dot active-science"></i> Действует сейчас</span>
+          <span><i class="dot calibration"></i> Эталон / Ориентир</span>
+          <span><i class="dot engineering"></i> Инженерный вклад</span>
+        </div>
+      </div>
+
+      <aside class="detail-panel" id="detailPanel" aria-live="polite">
+        <!-- Детали выбранного аппарата рендерятся через app.js -->
+      </aside>
+    </section>
+
+    <!-- Сравнительный блок: Зачем сохранять и изучать эти объекты -->
+    <section class="science-impact">
+      <h2>Три причины, почему эти аппараты всё ещё нужны науке</h2>
+      <div class="impact-cards">
+        <article class="impact-card">
+          <span class="impact-num">01</span>
+          <h3>Физические эталоны на поверхности</h3>
+          <p>Уголковые отражатели миссий Apollo и Луноходов позволяют лазерным дальномерам с Земли измерять расстояние до Луны с точностью до миллиметров.</p>
+        </article>
+        <article class="impact-card">
+          <span class="impact-num">02</span>
+          <h3>Координатная привязка планет</h3>
+          <p>Посадочные модули Viking и InSight выступают реперными точками для орбитальных камер: по ним уточняют карты высот и вращение Марса.</p>
+        </article>
+        <article class="impact-card">
+          <span class="impact-num">03</span>
+          <h3>Проверка материалов временем</h3>
+          <p>Изучение деградации металлов, солнечных панелей и электроники в условиях радиации и пыли помогает проектировать базы программы Artemis.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Мини-квиз для закрепления научной составляющей -->
+    <section class="quiz-box">
+      <div class="quiz-header">
+        <h2>Интерактивная проверка: Научный детектив</h2>
+        <p>Проверьте, как оставленное оборудование помогает современным миссиям.</p>
+      </div>
+      <div id="quizContainer"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Проект подготовлен для челленджа <strong>Abandoned, Not Forgotten</strong> • Данные основаны на открытых архивах NASA (NSSDC / PDS).</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
