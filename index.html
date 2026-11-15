@@ -11,7 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-  <!-- AUDIO ASSETS -->
+  <!-- AUDIO ASSETS (Звук марсианского ротора привязан к основной кнопке) -->
   <audio id="missionAudio" src="46087_20210507_HelicopterFliesOnMars.mp3" preload="auto"></audio>
   <audio id="moonAudio" src="Apollo_11_Landing_Net_1_HSK.mp3" preload="auto"></audio>
 
@@ -361,7 +361,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const audioBtn = document.getElementById('spotlightAudioBtn');
-      const audio = document.getElementById('missionAudio');
+      const audio = document.getElementById('missionAudio'); // Теперь здесь файл 46087 (ротор и ветер)
 
       if (audioBtn && audio) {
         audioBtn.addEventListener('click', () => {
@@ -377,5 +377,4 @@
     });
   </script>
 </body>
-  </html>
-  
+</html>
